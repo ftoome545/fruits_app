@@ -10,6 +10,22 @@ class Assets {
   /// assets/images/logo.svg
   static const String imagesLogo = "assets/images/logo.svg";
 
+  /// Assets for imagesPageViewItem1BackgroundImage
+  /// assets/images/PageView_item1_background_image.svg
+  static const String imagesPageViewItem1BackgroundImage = "assets/images/PageView_item1_background_image.svg";
+
+  /// Assets for imagesPageViewItem1Image
+  /// assets/images/PageView_item1_image.svg
+  static const String imagesPageViewItem1Image = "assets/images/PageView_item1_image.svg";
+
+  /// Assets for imagesPageViewItem2BackgroundImage
+  /// assets/images/PageView_item2_background_image.svg
+  static const String imagesPageViewItem2BackgroundImage = "assets/images/PageView_item2_background_image.svg";
+
+  /// Assets for imagesPageViewItem2Image
+  /// assets/images/PageView_item2_image.svg
+  static const String imagesPageViewItem2Image = "assets/images/PageView_item2_image.svg";
+
   /// Assets for imagesPlant
   /// assets/images/plant.svg
   static const String imagesPlant = "assets/images/plant.svg";
