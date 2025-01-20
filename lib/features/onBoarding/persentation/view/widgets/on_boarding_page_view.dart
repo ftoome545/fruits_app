@@ -5,18 +5,25 @@ import 'package:fruits_hub/features/onBoarding/persentation/view/widgets/page_vi
 class OnBoardingPageView extends StatelessWidget {
   const OnBoardingPageView({
     super.key,
+    required this.pageController,
   });
+
+  final PageController pageController;
 
   @override
   Widget build(BuildContext context) {
     return PageView(
-      children: const <Widget>[
+      controller: pageController,
+      children: <Widget>[
         PageViewItem(
+          isVisible:
+              (pageController.hasClients ? pageController.page!.round() : 0) ==
+                  0,
           image: Assets.imagesPageViewItem1Image,
           backgroundImage: Assets.imagesPageViewItem1BackgroundImage,
           subTitle:
               "اكتشف تجربة تسوق فريدة مع FruitHUB. استكشف مجموعتنا الواسعة من الفواكه الطازجة الممتازة واحصل على أفضل العروض والجودة العالية.",
-          title: Row(
+          title: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text("مرحبا بك في "),
@@ -26,6 +33,9 @@ class OnBoardingPageView extends StatelessWidget {
           ),
         ),
         PageViewItem(
+          isVisible:
+              (pageController.hasClients ? pageController.page!.round() : 0) ==
+                  1,
           image: Assets.imagesPageViewItem2Image,
           backgroundImage: Assets.imagesPageViewItem2BackgroundImage,
           subTitle:
