@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/utils/app_colors.dart';
 import 'package:fruits_hub/core/utils/app_images.dart';
+import 'package:fruits_hub/core/utils/app_text_style.dart';
 import 'package:fruits_hub/features/onBoarding/persentation/view/widgets/page_view_item.dart';
 
 class OnBoardingPageView extends StatelessWidget {
@@ -16,26 +18,32 @@ class OnBoardingPageView extends StatelessWidget {
       controller: pageController,
       children: <Widget>[
         PageViewItem(
-          isVisible:
-              (pageController.hasClients ? pageController.page!.round() : 0) ==
-                  0,
+          isVisible: true,
           image: Assets.imagesPageViewItem1Image,
           backgroundImage: Assets.imagesPageViewItem1BackgroundImage,
           subTitle:
               "اكتشف تجربة تسوق فريدة مع FruitHUB. استكشف مجموعتنا الواسعة من الفواكه الطازجة الممتازة واحصل على أفضل العروض والجودة العالية.",
-          title: const Row(
+          title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("مرحبا بك في "),
-              Text("Fruits"),
-              Text("HUB"),
+              Text("مرحبا بك في ",
+                  style: TextStyles.bold23
+                      .copyWith(color: const Color(0xFF0C0D0D))),
+              Text(
+                "HUB",
+                style:
+                    TextStyles.bold23.copyWith(color: AppColors.secondaryColor),
+              ),
+              Text(
+                "Fruits",
+                style:
+                    TextStyles.bold23.copyWith(color: AppColors.primaryColor),
+              ),
             ],
           ),
         ),
-        PageViewItem(
-          isVisible:
-              (pageController.hasClients ? pageController.page!.round() : 0) ==
-                  1,
+        const PageViewItem(
+          isVisible: false,
           image: Assets.imagesPageViewItem2Image,
           backgroundImage: Assets.imagesPageViewItem2BackgroundImage,
           subTitle:
