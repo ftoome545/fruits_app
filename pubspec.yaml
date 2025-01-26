@@ -39,6 +39,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter_svg: ^2.0.17
   dots_indicator: ^3.0.0
+  shared_preferences: ^2.3.3
 
 dev_dependencies:
   flutter_launcher_icons: "^0.14.2"
