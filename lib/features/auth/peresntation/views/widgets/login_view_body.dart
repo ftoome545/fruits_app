@@ -21,75 +21,73 @@ class LoginViewBody extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: kHorizintalPadding),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 24,
-                ),
-                const CustomTextFormField(
-                  hintText: "البريد الالكتروني",
-                  textInputType: TextInputType.emailAddress,
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                const CustomTextFormField(
-                    suffixIcon: Icon(
-                      Icons.remove_red_eye,
-                      color: Color(0xFFC9CECF),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 24,
+              ),
+              const CustomTextFormField(
+                hintText: "البريد الإلكتروني",
+                textInputType: TextInputType.emailAddress,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const CustomTextFormField(
+                  suffixIcon: Icon(
+                    Icons.remove_red_eye,
+                    color: Color(0xFFC9CECF),
+                  ),
+                  hintText: "كلمة المرور",
+                  textInputType: TextInputType.visiblePassword),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    "نسيت كلمة المرور؟",
+                    style: TextStyles.semiBold13.copyWith(
+                      color: AppColors.lightPrimaryColor,
                     ),
-                    hintText: "كلمة المرور",
-                    textInputType: TextInputType.visiblePassword),
-                const SizedBox(
-                  height: 16,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      "نسيت كلمة المرور؟",
-                      style: TextStyles.semiBold13.copyWith(
-                        color: AppColors.lightPrimaryColor,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 33,
-                ),
-                CustomButton(onPressed: () {}, text: "تسجيل الدخول"),
-                const SizedBox(
-                  height: 33,
-                ),
-                const DontHaveAnAccountWidget(),
-                const SizedBox(
-                  height: 33,
-                ),
-                const OrDivider(),
-                const SizedBox(
-                  height: 16,
-                ),
-                SocialLoginButton(
-                    image: Assets.imagesGoogleIcon,
-                    label: "تسجيل بواسطة جوجل",
-                    onPressed: () {}),
-                const SizedBox(
-                  height: 16,
-                ),
-                SocialLoginButton(
-                    image: Assets.imagesAppleIcon,
-                    label: "تسجيل بواسطة أبل",
-                    onPressed: () {}),
-                const SizedBox(
-                  height: 16,
-                ),
-                SocialLoginButton(
-                    image: Assets.imagesFacebookIcon,
-                    label: "تسجيل بواسطة فيسبوك",
-                    onPressed: () {}),
-              ],
-            ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 33,
+              ),
+              CustomButton(onPressed: () {}, text: "تسجيل الدخول"),
+              const SizedBox(
+                height: 33,
+              ),
+              const DontHaveAnAccountWidget(),
+              const SizedBox(
+                height: 33,
+              ),
+              const OrDivider(),
+              const SizedBox(
+                height: 16,
+              ),
+              SocialLoginButton(
+                  image: Assets.imagesGoogleIcon,
+                  label: "تسجيل بواسطة جوجل",
+                  onPressed: () {}),
+              const SizedBox(
+                height: 16,
+              ),
+              SocialLoginButton(
+                  image: Assets.imagesAppleIcon,
+                  label: "تسجيل بواسطة أبل",
+                  onPressed: () {}),
+              const SizedBox(
+                height: 16,
+              ),
+              SocialLoginButton(
+                  image: Assets.imagesFacebookIcon,
+                  label: "تسجيل بواسطة فيسبوك",
+                  onPressed: () {}),
+            ],
           ),
         ),
       ),
