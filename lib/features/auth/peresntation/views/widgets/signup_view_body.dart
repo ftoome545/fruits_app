@@ -3,10 +3,8 @@ import 'package:fruits_hub/constants.dart';
 import 'package:fruits_hub/core/widgets/custom_app_bar.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/core/widgets/custom_text_form_field.dart';
+import 'package:fruits_hub/features/auth/peresntation/views/widgets/have_an_account_widget.dart';
 import 'package:fruits_hub/features/auth/peresntation/views/widgets/terms_and_conditions.dart';
-
-import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/app_text_style.dart';
 
 class SignUpViewBody extends StatelessWidget {
   const SignUpViewBody({super.key});
@@ -46,12 +44,13 @@ class SignUpViewBody extends StatelessWidget {
               ),
               const TermsAndConditions(),
               const SizedBox(
-                height: 33,
+                height: 30,
               ),
               CustomButton(onPressed: () {}, text: 'تسجيل جديد'),
               const SizedBox(
-                height: 33,
+                height: 26,
               ),
+              const HaveAnAccountWidget(),
             ],
           ),
         ),
