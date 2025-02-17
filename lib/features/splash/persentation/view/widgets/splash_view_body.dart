@@ -16,7 +16,7 @@ class SplashViewBody extends StatefulWidget {
 class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   void initState() {
-    excuteNavigation();
+    executeNavigation();
     super.initState();
   }
 
@@ -41,7 +41,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     );
   }
 
-  void excuteNavigation() {
+  void executeNavigation() {
     bool isOnBoardingViewScreen = Prefs.getBool(kIsOnBoardingViewScreen);
     Future.delayed(const Duration(seconds: 3), () {
       if (isOnBoardingViewScreen) {

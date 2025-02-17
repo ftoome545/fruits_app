@@ -1,5 +1,8 @@
 plugins {
     id "com.android.application"
+    // START: FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    // END: FlutterFire Configuration
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
@@ -25,12 +28,12 @@ if (flutterVersionName == null) {
 
 android {
     namespace = "com.example.fruits_hub"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 34
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     defaultConfig {
@@ -38,8 +41,8 @@ android {
         applicationId = "com.example.fruits_hub"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        minSdkVersion 21
+        targetSdk = 34
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
     }
@@ -55,4 +58,20 @@ android {
 
 flutter {
     source = "../.."
+}
+
+configurations.all {
+resolutionStrategy {
+force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
+}
+}
+
+dependencies {
+implementation 'com.google.guava:guava:28.2-android'
+}
+
+configurations.all {
+resolutionStrategy {
+force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
+}
 }
