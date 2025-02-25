@@ -4,6 +4,8 @@ import 'package:fruits_hub/features/auth/peresntation/signup_cubits/signup_cubit
 import 'package:fruits_hub/features/auth/peresntation/views/widgets/signup_view_body.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
+import '../../../../../core/helper_functions/build_error_bar.dart';
+
 class SignupViewBodyBlocConsumer extends StatelessWidget {
   const SignupViewBodyBlocConsumer({
     super.key,
@@ -17,22 +19,7 @@ class SignupViewBodyBlocConsumer extends StatelessWidget {
           // Navigator.of(context).pop();
         }
         if (state is SignupFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Row(
-                children: [
-                  const Icon(
-                    Icons.close,
-                    color: Colors.red,
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Text(state.message),
-                ],
-              ),
-            ),
-          );
+          buildErrorBar(context, state.message);
         }
       },
       builder: (context, state) {
