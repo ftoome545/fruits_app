@@ -4,7 +4,7 @@ import 'package:fruits_hub/constants.dart';
 import 'package:fruits_hub/core/helper_functions/build_error_bar.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/core/widgets/custom_text_form_field.dart';
-import 'package:fruits_hub/features/auth/peresntation/signup_cubits/signup_cubit.dart';
+import 'package:fruits_hub/features/auth/peresntation/cubits/signup_cubits/signup_cubit.dart';
 import 'package:fruits_hub/features/auth/peresntation/views/widgets/have_an_account_widget.dart';
 import 'package:fruits_hub/features/auth/peresntation/views/widgets/terms_and_conditions.dart';
 
