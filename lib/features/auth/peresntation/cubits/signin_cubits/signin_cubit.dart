@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 
 part 'signin_state.dart';
 
-class SigninCubit extends Cubit<SigninCubitsState> {
+class SigninCubit extends Cubit<SigninState> {
   SigninCubit(this.authRepo) : super(SigninInitial());
 
   final AuthRepo authRepo;
