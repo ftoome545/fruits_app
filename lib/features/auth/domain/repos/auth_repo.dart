@@ -13,4 +13,6 @@ abstract class AuthRepo {
     String email,
     String password,
   );
+
+  Future<Either<Failures, UserEntity>> signInWithGoogle();
 }
