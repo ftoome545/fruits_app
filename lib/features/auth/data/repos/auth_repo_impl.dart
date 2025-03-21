@@ -1,7 +1,10 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_hub/core/errors/failures.dart';
+import 'package:fruits_hub/core/services/data_service.dart';
+import 'package:fruits_hub/core/utils/backend_endpoint.dart';
 import 'package:fruits_hub/features/auth/data/models/user_model.dart';
 import 'package:fruits_hub/features/auth/domain/entities/user_entity.dart';
 import 'package:fruits_hub/features/auth/domain/repos/auth_repo.dart';
@@ -11,19 +14,30 @@ import '../../../../core/services/firebase_auth_service.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuthService firebaseAuthService;
+  final DatabaseService databaseService;
 
-  AuthRepoImpl({required this.firebaseAuthService});
+  AuthRepoImpl(
+      {required this.databaseService, required this.firebaseAuthService});
 
   @override
   Future<Either<Failures, UserEntity>> createUserWithEmailAndPassword(
       String email, String password, String name) async {
+    User? user;
     try {
-      var user = await firebaseAuthService.createUserWitheEmailAndPassword(
+      user = await firebaseAuthService.createUserWitheEmailAndPassword(
           email: email, password: password);
-      return Right(UserModel.fromFirebaseUser(user));
+      var userEntity = UserEntity(name: name, email: email, uId: user.uid);
+      await addUserData(user: userEntity);
+      return Right(userEntity);
     } on CustomException catch (e) {
+      if (user != null) {
+        await firebaseAuthService.deleteUser();
+      }
       return Left(ServerFailure(e.message));
     } catch (e) {
+      if (user != null) {
+        await firebaseAuthService.deleteUser();
+      }
       log("Exception in AuthRepoImpl.createUserWitheEmailAndPassword: ${e.toString()}");
       return Left(ServerFailure('حدث خطأ ما. من فضلك حاول مجدداً'));
     }
@@ -64,5 +78,11 @@ class AuthRepoImpl extends AuthRepo {
       log("Exception in AuthRepoImpl.signinWithFacebook: ${e.toString()}");
       return Left(ServerFailure('حدث خطأ ما. من فضلك حاول مجدداً'));
     }
+  }
+
+  @override
+  Future addUserData({required UserEntity user}) async {
+    await databaseService.addData(
+        path: BackendEndpoint.addUserData, data: user.toMap());
   }
 }
