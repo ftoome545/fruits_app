@@ -30,16 +30,18 @@ class AuthRepoImpl extends AuthRepo {
       await addUserData(user: userEntity);
       return Right(userEntity);
     } on CustomException catch (e) {
-      if (user != null) {
-        await firebaseAuthService.deleteUser();
-      }
+      await deleteUser(user);
       return Left(ServerFailure(e.message));
     } catch (e) {
-      if (user != null) {
-        await firebaseAuthService.deleteUser();
-      }
+      deleteUser(user);
       log("Exception in AuthRepoImpl.createUserWitheEmailAndPassword: ${e.toString()}");
       return Left(ServerFailure('حدث خطأ ما. من فضلك حاول مجدداً'));
+    }
+  }
+
+  Future<void> deleteUser(User? user) async {
+    if (user != null) {
+      await firebaseAuthService.deleteUser();
     }
   }
 
@@ -60,10 +62,14 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Either<Failures, UserEntity>> signInWithGoogle() async {
+    User? user;
     try {
-      var user = await firebaseAuthService.signInWithGoogle();
-      return Right(UserModel.fromFirebaseUser(user));
+      user = await firebaseAuthService.signInWithGoogle();
+      var userEntity = UserModel.fromFirebaseUser(user);
+      await addUserData(user: userEntity);
+      return Right(userEntity);
     } catch (e) {
+      await deleteUser(user);
       log("Exception in AuthRepoImpl.signInWithGoogle: ${e.toString()}");
       return Left(ServerFailure('حدث خطأ ما. من فضلك حاول مجدداً'));
     }
@@ -71,10 +77,14 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   Future<Either<Failures, UserEntity>> signInFacebook() async {
+    User? user;
     try {
-      var user = await firebaseAuthService.signInWithFacebook();
-      return Right(UserModel.fromFirebaseUser(user));
+      user = await firebaseAuthService.signInWithFacebook();
+      var userEntity = UserModel.fromFirebaseUser(user);
+      await addUserData(user: userEntity);
+      return Right(userEntity);
     } catch (e) {
+      await deleteUser(user);
       log("Exception in AuthRepoImpl.signinWithFacebook: ${e.toString()}");
       return Left(ServerFailure('حدث خطأ ما. من فضلك حاول مجدداً'));
     }
