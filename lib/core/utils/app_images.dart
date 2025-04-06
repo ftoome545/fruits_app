@@ -18,6 +18,14 @@ class Assets {
   /// assets/images/facebook_icon.svg
   static const String imagesFacebookIcon = "assets/images/facebook_icon.svg";
 
+  /// Assets for imagesFeaturedItemBackground
+  /// assets/images/featured_item_background.png
+  static const String imagesFeaturedItemBackground = "assets/images/featured_item_background.png";
+
+  /// Assets for imagesFeaturedItemImage
+  /// assets/images/featured_item_image.png
+  static const String imagesFeaturedItemImage = "assets/images/featured_item_image.png";
+
   /// Assets for imagesFilter
   /// assets/images/filter.svg
   static const String imagesFilter = "assets/images/filter.svg";
