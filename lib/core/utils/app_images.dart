@@ -34,6 +34,14 @@ class Assets {
   /// assets/images/google_icon.svg
   static const String imagesGoogleIcon = "assets/images/google_icon.svg";
 
+  /// Assets for imagesHomeBold
+  /// assets/images/home_bold.svg
+  static const String imagesHomeBold = "assets/images/home_bold.svg";
+
+  /// Assets for imagesHomeOutline
+  /// assets/images/home_outline.svg
+  static const String imagesHomeOutline = "assets/images/home_outline.svg";
+
   /// Assets for imagesLogo
   /// assets/images/logo.svg
   static const String imagesLogo = "assets/images/logo.svg";
@@ -62,6 +70,14 @@ class Assets {
   /// assets/images/plant.svg
   static const String imagesPlant = "assets/images/plant.svg";
 
+  /// Assets for imagesProductBold
+  /// assets/images/product_bold.svg
+  static const String imagesProductBold = "assets/images/product_bold.svg";
+
+  /// Assets for imagesProductOutline
+  /// assets/images/product_outline.svg
+  static const String imagesProductOutline = "assets/images/product_outline.svg";
+
   /// Assets for imagesProfileImage
   /// assets/images/profile_image.png
   static const String imagesProfileImage = "assets/images/profile_image.png";
@@ -70,8 +86,28 @@ class Assets {
   /// assets/images/search_icon.svg
   static const String imagesSearchIcon = "assets/images/search_icon.svg";
 
+  /// Assets for imagesShoppingCartBold
+  /// assets/images/shopping_cart_bold.svg
+  static const String imagesShoppingCartBold = "assets/images/shopping_cart_bold.svg";
+
+  /// Assets for imagesShoppingCartOutline
+  /// assets/images/shopping_cart_outline.svg
+  static const String imagesShoppingCartOutline = "assets/images/shopping_cart_outline.svg";
+
   /// Assets for imagesSplashBottom
   /// assets/images/splash_bottom.svg
   static const String imagesSplashBottom = "assets/images/splash_bottom.svg";
+
+  /// Assets for imagesUserBold
+  /// assets/images/user_bold.svg
+  static const String imagesUserBold = "assets/images/user_bold.svg";
+
+  /// Assets for imagesUserOutline
+  /// assets/images/user_outline.svg
+  static const String imagesUserOutline = "assets/images/user_outline.svg";
+
+  /// Assets for imagesWatermelonTest
+  /// assets/images/watermelon_test.png
+  static const String imagesWatermelonTest = "assets/images/watermelon_test.png";
 }
 

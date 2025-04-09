@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/constants.dart';
-import 'package:fruits_hub/core/utils/app_text_style.dart';
 import 'package:fruits_hub/core/widgets/search_text_field.dart';
-import 'package:fruits_hub/features/auth/peresntation/views/widgets/featured_list.dart';
+import 'package:fruits_hub/features/home/presentation/view/widgets/best_selling_grid_view.dart';
+import 'package:fruits_hub/features/home/presentation/view/widgets/best_selling_header.dart';
+import 'package:fruits_hub/features/home/presentation/view/widgets/featured_list.dart';
 import 'package:fruits_hub/features/home/presentation/view/widgets/custom_home_app_bar.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -30,33 +31,14 @@ class HomeViewBody extends StatelessWidget {
                 height: 12,
               ),
               BestSellingHeader(),
+              SizedBox(
+                height: 8,
+              ),
             ],
           )),
+          BestSellingGridView(),
         ],
       ),
-    );
-  }
-}
-
-class BestSellingHeader extends StatelessWidget {
-  const BestSellingHeader({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          'الأكثر مبيعًا',
-          style: TextStyles.bold16.copyWith(color: const Color(0xff0C0D0D)),
-        ),
-        const Spacer(),
-        Text(
-          'المزيد',
-          style: TextStyles.regular13.copyWith(color: const Color(0xff949D9E)),
-        )
-      ],
     );
   }
 }

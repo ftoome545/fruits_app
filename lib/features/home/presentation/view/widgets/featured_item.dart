@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/utils/app_images.dart';
 import 'package:fruits_hub/core/utils/app_text_style.dart';
-import 'package:fruits_hub/features/auth/peresntation/views/widgets/featured_item_button.dart';
+import 'package:fruits_hub/features/home/presentation/view/widgets/featured_item_button.dart';
 
 class FeaturedItem extends StatelessWidget {
   const FeaturedItem({super.key});
