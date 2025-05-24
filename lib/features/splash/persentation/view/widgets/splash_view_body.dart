@@ -5,7 +5,6 @@ import 'package:fruits_hub/core/services/firebase_auth_service.dart';
 import 'package:fruits_hub/core/services/shared_preferences_singleton.dart';
 import 'package:fruits_hub/core/utils/app_images.dart';
 import 'package:fruits_hub/features/auth/peresntation/views/singin_view.dart';
-import 'package:fruits_hub/features/home/presentation/view/home_view.dart';
 import 'package:fruits_hub/features/onBoarding/persentation/view/on_boarding_view.dart';
 
 class SplashViewBody extends StatefulWidget {
