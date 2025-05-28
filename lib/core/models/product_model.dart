@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:fruits_hub/core/entities/product_entity.dart';
 import 'package:fruits_hub/core/models/review_model.dart';
 
 class ProductModel {
@@ -53,6 +54,20 @@ class ProductModel {
             : [],
         sellingCount: json['sellingCount'],
         avgRating: 0);
+  }
+
+  ProductEntity toEntity() {
+    return ProductEntity(
+        name: name,
+        code: code,
+        description: description,
+        price: price,
+        image: image,
+        isFeatured: isFeatured,
+        expirationsMonths: expirationsMonths,
+        numberOfCalories: numberOfCalories,
+        unitAmount: unitAmount,
+        review: review.map((e) => e.toEntity()).toList());
   }
 
   toJson() {
