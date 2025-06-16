@@ -13,17 +13,19 @@ class ProductsRepoImpl implements ProductsRepo {
   @override
   Future<Either<Failures, List<ProductEntity>>> getBestSellingProducts() async {
     try {
-      var data = await databaseService
-          .getData(path: BackendEndpoint.getProducts, query: {
-        'limit': 10,
-        'orderBy': 'sellingCount',
-        'descending': true,
-      });
+      var data = await databaseService.getData(
+          path: BackendEndpoint.getProducts,
+          query: {
+            'limit': 10,
+            'orderBy': 'sellingCount',
+            'descending': true
+          }) as List<Map<String, dynamic>>;
+
       List<ProductEntity> products =
-          data.map((e) => ProductModel.fromJson(e).toEntity()).toList;
+          data.map((e) => ProductModel.fromJson(e).toEntity()).toList();
       return right(products);
     } catch (e) {
-      return Left(ServerFailure('Failed to get Products'));
+      return left(ServerFailure('Failed to get products'));
     }
   }
 
