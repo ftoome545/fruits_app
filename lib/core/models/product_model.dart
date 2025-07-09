@@ -17,7 +17,7 @@ class ProductModel {
   final num avgRating;
   final num ratingCount = 0;
   final List<ReviewModel> reviews;
-  final int sellingCount;
+  final num sellingCount;
 
   ProductModel({
     required this.name,
@@ -46,7 +46,7 @@ class ProductModel {
       description: json['description'],
       expirationsMonths: json['expirationsMonths'],
       numberOfCalories: json['numberOfCalories'],
-      unitAmount: json['unitAmount'],
+      unitAmount: json['uniteAmount'],
       sellingCount: json['sellingCount'],
       reviews: json['reviews'] != null
           ? List<ReviewModel>.from(
@@ -67,6 +67,7 @@ class ProductModel {
         price: price,
         imageUrl: imageUrl,
         isFeatured: isFeatured,
+        isOrganic: isOrganic,
         expirationsMonths: expirationsMonths,
         numberOfCalories: numberOfCalories,
         unitAmount: unitAmount,
@@ -86,7 +87,7 @@ class ProductModel {
       'uniteAmount': unitAmount,
       'isOrganic': isOrganic,
       'review': reviews.map((e) => e.toJson()).toList(),
-      'sellingCount': sellingCount,
+      // 'sellingCount': sellingCount,
     };
   }
 }
