@@ -32,10 +32,10 @@ class ProductsRepoImpl implements ProductsRepo {
   @override
   Future<Either<Failures, List<ProductEntity>>> getProduts() async {
     try {
-      var data =
-          await databaseService.getData(path: BackendEndpoint.getProducts);
+      var data = await databaseService.getData(
+          path: BackendEndpoint.getProducts) as List<Map<String, dynamic>>;
       List<ProductEntity> products =
-          data.map((e) => ProductModel.fromJson(e).toEntity()).toList;
+          data.map((e) => ProductModel.fromJson(e).toEntity()).toList();
       return right(products);
     } catch (e) {
       return Left(ServerFailure('Failed to get Products'));
