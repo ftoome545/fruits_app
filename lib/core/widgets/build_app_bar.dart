@@ -5,7 +5,8 @@ import 'package:fruits_hub/core/widgets/notification_widget.dart';
 AppBar buildAppBar(
     {required BuildContext context,
     required String title,
-    bool showBackButton = true}) {
+    bool showBackButton = true,
+    bool showNotificationIcon = true}) {
   return AppBar(
     backgroundColor: Colors.transparent,
     elevation: 0,
@@ -23,10 +24,13 @@ AppBar buildAppBar(
       title,
       style: TextStyles.bold19,
     ),
-    actions: const [
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: NotificationWidget(),
+    actions: [
+      Visibility(
+        visible: showNotificationIcon,
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: NotificationWidget(),
+        ),
       )
     ],
   );
