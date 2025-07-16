@@ -1,6 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:fruits_hub/core/entities/product_entity.dart';
 
-class CartItemEntity {
+// ignore: must_be_immutable
+class CartItemEntity extends Equatable {
   final ProductEntity productEntity;
   int count;
 
@@ -21,4 +23,7 @@ class CartItemEntity {
   decreasCount() {
     count--;
   }
+
+  @override
+  List<Object?> get props => [productEntity];
 }

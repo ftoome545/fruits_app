@@ -6,8 +6,20 @@ class CartEntity {
 
   CartEntity(this.cartItems);
 
-  addCartItem(CartItemEntity cartItementity) {
-    cartItems.add(cartItementity);
+  addCartItem(CartItemEntity cartItemEntity) {
+    cartItems.add(cartItemEntity);
+  }
+
+  removeCartItem(CartItemEntity cartItem) {
+    cartItems.remove(cartItem);
+  }
+
+  double calculateTotalPrice() {
+    double totalPrice = 0;
+    for (var cartItem in cartItems) {
+      totalPrice += cartItem.calculateTotalPrice();
+    }
+    return totalPrice;
   }
 
   bool isExist(ProductEntity product) {

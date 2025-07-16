@@ -35,8 +35,8 @@ class CartViewBody extends StatelessWidget {
                     : const CustomDivider(),
               ],
             )),
-            const CartItemList(
-              cartItems: [],
+            CartItemList(
+              cartItems: context.watch<CartCubit>().cartEntity.cartItems,
             ),
             SliverToBoxAdapter(
               child: context.read<CartCubit>().cartEntity.cartItems.isEmpty
@@ -49,7 +49,10 @@ class CartViewBody extends StatelessWidget {
             left: 16,
             right: 16,
             bottom: MediaQuery.sizeOf(context).height * .05,
-            child: CustomButton(onPressed: () {}, text: 'الدفع  120جنيه')),
+            child: CustomButton(
+                onPressed: () {},
+                text:
+                    'الدفع  ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} جنيه')),
       ],
     );
   }

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:fruits_hub/core/entities/product_entity.dart';
 import 'package:fruits_hub/features/home/domain/entities/cart_entity.dart';
+import 'package:fruits_hub/features/home/domain/entities/cart_item_entity.dart';
 import 'package:meta/meta.dart';
 
 part 'cart_state.dart';
@@ -10,7 +11,7 @@ class CartCubit extends Cubit<CartState> {
 
   CartEntity cartEntity = CartEntity([]);
 
-  void addProduct(ProductEntity productEntity) {
+  void addCarItem(ProductEntity productEntity) {
     bool isProductExist = cartEntity.isExist(productEntity);
     var cartItem = cartEntity.getCartItem(productEntity);
     if (isProductExist) {
@@ -19,6 +20,11 @@ class CartCubit extends Cubit<CartState> {
       cartEntity.addCartItem(cartItem);
     }
 
-    emit(CartProductAdded());
+    emit(CartItemAdded());
+  }
+
+  void deleteCarItem(CartItemEntity cartItem) {
+    cartEntity.removeCartItem(cartItem);
+    emit(CartItemRemoved());
   }
 }
