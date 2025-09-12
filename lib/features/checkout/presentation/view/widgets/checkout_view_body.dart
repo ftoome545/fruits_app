@@ -17,6 +17,11 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   @override
   void initState() {
     pageController = PageController();
+    pageController.addListener(() {
+      setState(() {
+        currentPageIndex = pageController.page!.toInt();
+      });
+    });
     super.initState();
   }
 
@@ -26,6 +31,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     super.dispose();
   }
 
+  int currentPageIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,11 +43,13 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
             const SizedBox(
               height: 16,
             ),
-            const CheckoutSteps(),
+            CheckoutSteps(
+              currentPageIndex: currentPageIndex,
+            ),
             CheckoutPageView(pageController: pageController),
             CustomButton(
                 onPressed: () {
-                  pageController.nextPage(
+                  pageController.animateToPage(2,
                       duration: const Duration(milliseconds: 300),
                       curve: Curves.easeIn);
                 },
