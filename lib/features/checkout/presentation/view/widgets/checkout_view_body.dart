@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_hub/core/widgets/custom_app_bar.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/features/checkout/presentation/view/widgets/checkout_page_view.dart';
 import 'package:fruits_hub/features/checkout/presentation/view/widgets/checkout_steps.dart';
@@ -19,7 +18,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     pageController = PageController();
     pageController.addListener(() {
       setState(() {
-        currentPageIndex = pageController.page!.toInt();
+        currentPage = pageController.page!.toInt();
       });
     });
     super.initState();
@@ -31,35 +30,46 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     super.dispose();
   }
 
-  int currentPageIndex = 0;
+  int currentPage = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(context: context, title: 'العنوان'),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 16,
-            ),
-            CheckoutSteps(
-              currentPageIndex: currentPageIndex,
-            ),
-            CheckoutPageView(pageController: pageController),
-            CustomButton(
-                onPressed: () {
-                  pageController.animateToPage(2,
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeIn);
-                },
-                text: 'التالي'),
-            const SizedBox(
-              height: 32,
-            ),
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 16,
+          ),
+          CheckoutSteps(
+            currentPageIndex: currentPage,
+            pageController: pageController,
+          ),
+          CheckoutPageView(pageController: pageController),
+          CustomButton(
+              onPressed: () {
+                pageController.animateToPage(currentPage + 1,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeIn);
+              },
+              text: getNextButtomTitle(currentPage)),
+          const SizedBox(
+            height: 32,
+          ),
+        ],
       ),
     );
+  }
+
+  String getNextButtomTitle(int currentPage) {
+    switch (currentPage) {
+      case 0:
+        return 'التالي';
+      case 1:
+        return 'التالي';
+      case 2:
+        return 'الدفع عبر PayPal';
+      default:
+        return 'التالي';
+    }
   }
 }
