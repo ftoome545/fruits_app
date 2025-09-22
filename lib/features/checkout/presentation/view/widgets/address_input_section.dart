@@ -1,52 +1,90 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/utils/app_colors.dart';
 import 'package:fruits_hub/core/utils/app_text_style.dart';
 import 'package:fruits_hub/core/widgets/custom_text_form_field.dart';
+import 'package:fruits_hub/features/checkout/domain/entities/order_entity.dart';
 
 class AddressInputSection extends StatelessWidget {
-  const AddressInputSection({super.key});
+  const AddressInputSection(
+      {super.key, required this.formKey, required this.valueListenable});
+  final GlobalKey<FormState> formKey;
+  final ValueListenable<AutovalidateMode> valueListenable;
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        SizedBox(
-          height: 24,
+    var shippingAddress = context.read<OrderEntity>().shippingAddressEntity;
+    return SingleChildScrollView(
+      child: ValueListenableBuilder<AutovalidateMode>(
+        valueListenable: valueListenable,
+        builder: (context, value, child) => Form(
+          key: formKey,
+          autovalidateMode: value,
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 24,
+              ),
+              CustomTextFormField(
+                  onSaved: (value) {
+                    shippingAddress!.fullName = value;
+                  },
+                  hintText: 'الاسم كامل',
+                  textInputType: TextInputType.text),
+              const SizedBox(
+                height: 16,
+              ),
+              CustomTextFormField(
+                  onSaved: (value) {
+                    shippingAddress!.email = value;
+                  },
+                  hintText: 'البريد الإلكتروني',
+                  textInputType: TextInputType.emailAddress),
+              const SizedBox(
+                height: 16,
+              ),
+              CustomTextFormField(
+                  onSaved: (value) {
+                    shippingAddress!.address = value;
+                  },
+                  hintText: 'العنوان',
+                  textInputType: TextInputType.text),
+              const SizedBox(
+                height: 16,
+              ),
+              CustomTextFormField(
+                  onSaved: (value) {
+                    shippingAddress!.city = value;
+                  },
+                  hintText: 'المدينه',
+                  textInputType: TextInputType.text),
+              const SizedBox(
+                height: 16,
+              ),
+              CustomTextFormField(
+                  onSaved: (value) {
+                    shippingAddress!.addressDetails = value;
+                  },
+                  hintText: 'رقم الطابق , رقم الشقه ..',
+                  textInputType: TextInputType.text),
+              const SizedBox(
+                height: 16,
+              ),
+              CustomTextFormField(
+                  onSaved: (value) {
+                    shippingAddress!.phone = value;
+                  },
+                  hintText: 'رقم الهاتف',
+                  textInputType: TextInputType.phone),
+              const SizedBox(
+                height: 16,
+              ),
+              const SaveAddressToggle()
+            ],
+          ),
         ),
-        CustomTextFormField(
-            hintText: 'الاسم كامل', textInputType: TextInputType.text),
-        SizedBox(
-          height: 16,
-        ),
-        CustomTextFormField(
-            hintText: 'البريد الإلكتروني',
-            textInputType: TextInputType.emailAddress),
-        SizedBox(
-          height: 16,
-        ),
-        CustomTextFormField(
-            hintText: 'العنوان', textInputType: TextInputType.text),
-        SizedBox(
-          height: 16,
-        ),
-        CustomTextFormField(
-            hintText: 'المدينه', textInputType: TextInputType.text),
-        SizedBox(
-          height: 16,
-        ),
-        CustomTextFormField(
-            hintText: 'رقم الطابق , رقم الشقه ..',
-            textInputType: TextInputType.text),
-        SizedBox(
-          height: 16,
-        ),
-        CustomTextFormField(
-            hintText: 'رقم الهاتف', textInputType: TextInputType.phone),
-        SizedBox(
-          height: 16,
-        ),
-        SaveAddressToggle()
-      ],
+      ),
     );
   }
 }

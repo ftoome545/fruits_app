@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_hub/core/helper_functions/build_error_bar.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
+import 'package:fruits_hub/features/checkout/domain/entities/order_entity.dart';
 import 'package:fruits_hub/features/checkout/presentation/view/widgets/checkout_page_view.dart';
 import 'package:fruits_hub/features/checkout/presentation/view/widgets/checkout_steps.dart';
 
@@ -12,7 +15,8 @@ class CheckoutViewBody extends StatefulWidget {
 
 class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   late PageController pageController;
-
+  ValueNotifier<AutovalidateMode> valueNotifier =
+      ValueNotifier(AutovalidateMode.disabled);
   @override
   void initState() {
     pageController = PageController();
@@ -27,10 +31,13 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   @override
   void dispose() {
     pageController.dispose();
+    valueNotifier.dispose();
     super.dispose();
   }
 
   int currentPage = 0;
+  final GlobalKey<FormState> _formKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -44,12 +51,18 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
             currentPageIndex: currentPage,
             pageController: pageController,
           ),
-          CheckoutPageView(pageController: pageController),
+          CheckoutPageView(
+            pageController: pageController,
+            formKey: _formKey,
+            valueListenable: valueNotifier,
+          ),
           CustomButton(
               onPressed: () {
-                pageController.animateToPage(currentPage + 1,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeIn);
+                if (currentPage == 0) {
+                  _handleShippingSectionValidation(context);
+                } else if (currentPage == 1) {
+                  _handleAddressValidation();
+                }
               },
               text: getNextButtomTitle(currentPage)),
           const SizedBox(
@@ -58,6 +71,15 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         ],
       ),
     );
+  }
+
+  void _handleShippingSectionValidation(BuildContext context) {
+    if (context.read<OrderEntity>().payWithCash != null) {
+      pageController.animateToPage(currentPage + 1,
+          duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+    } else {
+      showErrorBar(context, 'اختر طريقة الدفع');
+    }
   }
 
   String getNextButtomTitle(int currentPage) {
@@ -70,6 +92,16 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         return 'الدفع عبر PayPal';
       default:
         return 'التالي';
+    }
+  }
+
+  void _handleAddressValidation() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      pageController.animateToPage(currentPage + 1,
+          duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+    } else {
+      valueNotifier.value = AutovalidateMode.always;
     }
   }
 }
