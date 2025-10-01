@@ -33,7 +33,7 @@ class _ShippingSectionState extends State<ShippingSection>
             titel: 'الدفع عند الاستلام',
             subTitel: 'التسليم من المكان',
             price:
-                (orderEntity.cartEntity.calculateTotalPrice() + 40).toString(),
+                (orderEntity.cartEntity.calculateTotalPrice() + 30).toString(),
             isSelected: isSelected == 0,
           ),
           const SizedBox(
