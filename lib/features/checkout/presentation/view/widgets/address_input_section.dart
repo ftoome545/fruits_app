@@ -28,7 +28,7 @@ class AddressInputSection extends StatelessWidget {
               ),
               CustomTextFormField(
                   onSaved: (value) {
-                    shippingAddress!.fullName = value;
+                    shippingAddress.fullName = value;
                   },
                   hintText: 'الاسم كامل',
                   textInputType: TextInputType.text),
@@ -37,7 +37,7 @@ class AddressInputSection extends StatelessWidget {
               ),
               CustomTextFormField(
                   onSaved: (value) {
-                    shippingAddress!.email = value;
+                    shippingAddress.email = value;
                   },
                   hintText: 'البريد الإلكتروني',
                   textInputType: TextInputType.emailAddress),
@@ -46,7 +46,7 @@ class AddressInputSection extends StatelessWidget {
               ),
               CustomTextFormField(
                   onSaved: (value) {
-                    shippingAddress!.address = value;
+                    shippingAddress.address = value;
                   },
                   hintText: 'العنوان',
                   textInputType: TextInputType.text),
@@ -55,7 +55,7 @@ class AddressInputSection extends StatelessWidget {
               ),
               CustomTextFormField(
                   onSaved: (value) {
-                    shippingAddress!.city = value;
+                    shippingAddress.city = value;
                   },
                   hintText: 'المدينه',
                   textInputType: TextInputType.text),
@@ -64,7 +64,7 @@ class AddressInputSection extends StatelessWidget {
               ),
               CustomTextFormField(
                   onSaved: (value) {
-                    shippingAddress!.addressDetails = value;
+                    shippingAddress.addressDetails = value;
                   },
                   hintText: 'رقم الطابق , رقم الشقه ..',
                   textInputType: TextInputType.text),
@@ -73,7 +73,7 @@ class AddressInputSection extends StatelessWidget {
               ),
               CustomTextFormField(
                   onSaved: (value) {
-                    shippingAddress!.phone = value;
+                    shippingAddress.phone = value;
                   },
                   hintText: 'رقم الهاتف',
                   textInputType: TextInputType.phone),
