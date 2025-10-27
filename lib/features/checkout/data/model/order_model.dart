@@ -33,6 +33,8 @@ class OrderModel {
     return {
       'totalPrice': totalPrice,
       'uId': uId,
+      'status': 'pending',
+      'date': DateTime.now().toString(),
       'shippingAddressModel': shippingAddressModel.toJson(),
       'orderPrdocut': orderProduct.map((e) => e.toJson()).toList(),
       'paymentMethod': paymentMethod,
